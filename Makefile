@@ -1,6 +1,6 @@
 NAME		= fractol
 
-SRCS		= fractol.c operations.c
+SRCS		= fractol.c operations.c fractol_utils.c
 
 CC		= cc
 
@@ -19,8 +19,6 @@ compile:
 			$(CC) $(CFLAGS) $(SRCS) -o fractol -L./libft -lft -lm
 
 clean:
-			$(RM) $(OBJS)
-			$(RM) $(BOBJS)
 			cd libft && $(MAKE) clean
 
 fclean:		clean
