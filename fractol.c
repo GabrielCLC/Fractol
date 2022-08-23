@@ -1,29 +1,31 @@
 #include <stdio.h>
 #include "fractol.h"
 
-static void	display_fractal(char *type)
+void	pixel_put(t_data *data, int x, int y, int color)
 {
-	complx	center;
-	complx	start;
-	complx	constant;
-	double	unit;
-	
-	center.r =  center.i = 0;
-	constant.r = -0.4;
-	constant.i = 0.6;
+	char	*dst;
 
-	unit = (double) 3 / (double) GRID_SIZE;
-	start = find_start(center, unit);
-	if (!ft_strncmp(type, "mandelbrot", 10))
-		print_mandelbrot(start, unit);
-	else if (!ft_strncmp(type, "julia", 5))
-		print_julia(start, constant, unit);
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
 }
 
 int	main(int argc, char *argv[])
 {
-	if (argc < 2)
-		ft_printf("Invalid argument\n");
-	else
-		display_fractal(argv[1]);
+//	if (argc < 2)
+//		ft_printf("Invalid argument\n");
+//	else
+//		display_fractal(argv[1]);
+	void	*mlx;
+	void	*mlx_win;
+	t_data	img;
+
+	mlx = mlx_init();
+	img.img = mlx_new_image(mlx, 400, 400);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+	mlx_win = mlx_new_window(mlx, 400, 400, "Hello World");
+	pixel_put(&img, 5, 5, 0x00FF0000);
+	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+
+	mlx_loop(mlx);
+
 }

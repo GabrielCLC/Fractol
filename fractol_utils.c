@@ -75,3 +75,20 @@ void    print_mandelbrot(complx constant, double unit)
 	}
 }
 
+void	display_fractal(char *type)
+{
+	complx	center;
+	complx	start;
+	complx	constant;
+	double	unit;
+
+	center.r = center.i = 0;
+	constant.r = -0.8;
+	constant.i = 0.156;
+	unit = (double) 3 / (double) GRID_SIZE;
+	start = find_start(center, unit);
+	if (!ft_strncmp(type, "mandelbrot", 10))
+		print_mandelbrot(start, unit);
+	else if (!ft_strncmp(type, "julia", 5))
+		print_julia(start, constant, unit);
+}

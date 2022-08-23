@@ -2,24 +2,34 @@ NAME		= fractol
 
 SRCS		= fractol.c operations.c fractol_utils.c 
 
-CC		= cc
+MINILIBX	= -Lmlx -lmlx -framework OpenGL -framework appKit
 
-RM 		= rm -f
+LIBFT		= -Llibft -lft
+
+MATH		= -lm
+
+CC			= cc
+
+RM 			= rm -f
 
 CFLAGS		= -Wall -Wextra #-Werror
 
-$(NAME):	libft compile
+$(NAME):	libft minilibx compile
 
 all:		$(NAME)
+
+minilibx:
+			cd mlx && $(MAKE)
 
 libft:
 			cd libft && $(MAKE)
 
 compile:
-			$(CC) $(CFLAGS) $(SRCS) -o fractol -L./libft -lft -lm
+			$(CC) $(CFLAGS) $(SRCS) $(LIBFT) $(MINILIBX) $(MATH) -o fractol 
 
 clean:
 			cd libft && $(MAKE) clean
+			cd mlx && $(MAKE) clean
 
 fclean:		clean
 			$(RM) $(NAME)
@@ -27,4 +37,4 @@ fclean:		clean
 
 re:		fclean all
 
-.PHONY:		re fclean clean compile libft all $(NAME)
+.PHONY:		re fclean clean compile libft all minilibx $(NAME)
