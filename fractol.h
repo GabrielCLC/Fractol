@@ -19,7 +19,7 @@ typedef struct	complex_number
 	double	i;	
 }		complx;
 
-int		julia_iteration(complx nbr, complx constant);
+int		fractal_iteration(complx nbr, complx constant);
 int		mandelbrot_iteration(complx constant);
 void	print_mandelbrot(complx constant, double unit);
 void	print_julia(complx point, complx constant, double unit);

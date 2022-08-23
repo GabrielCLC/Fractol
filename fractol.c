@@ -8,10 +8,9 @@ static void	display_fractal(char *type)
 	complx	constant;
 	double	unit;
 	
-	center.r = 0;
-	center.i = 0;
-	constant.r = -0.8;
-	constant.i = 0.156;
+	center.r =  center.i = 0;
+	constant.r = -0.4;
+	constant.i = 0.6;
 
 	unit = (double) 3 / (double) GRID_SIZE;
 	start = find_start(center, unit);

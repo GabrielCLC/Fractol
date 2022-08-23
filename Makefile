@@ -1,6 +1,6 @@
 NAME		= fractol
 
-SRCS		= fractol.c operations.c fractol_utils.c mandelbrot.c julia.c
+SRCS		= fractol.c operations.c fractol_utils.c 
 
 CC		= cc
 

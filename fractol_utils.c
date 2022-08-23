@@ -9,3 +9,69 @@ complx	find_start(complx center, double unit)
 	return (start);
 }
 
+int fractal_iteration(complx nbr, complx constant)
+{
+	int     i;
+	                                                                                                               
+	i = 0;
+	while (i++ < ITERATION_LIMIT)
+	{   
+		nbr = complx_sum(complx_pow(nbr, 2), constant);
+		if (absolute_value(nbr) > 2)
+			break;
+	}   
+	return (i);
+}
+
+void    print_julia(complx point, complx constant, double unit)
+{
+	int     i;
+	int     j;
+	double  rstart;
+	
+	rstart = point.r;
+	i = j = 0;
+	while (i++ < GRID_SIZE)
+	{
+		while (j++ < GRID_SIZE)
+		{
+			if (fractal_iteration(point, constant) == ITERATION_LIMIT + 1)
+				ft_printf(".");
+			else
+				ft_printf(" ");
+			point.r += unit;
+		}
+		j = 0;
+		point.r = rstart;
+		point.i -= unit;
+		ft_printf("\n");
+	}
+}
+
+void    print_mandelbrot(complx constant, double unit)
+{
+	int     i;
+	int     j;
+	double  rstart;
+	complx  zero;
+	
+	zero.r = zero.i = 0;
+	rstart = constant.r;
+	i = j = 0;
+	while (i++ < GRID_SIZE)
+	{
+		while (j++ < GRID_SIZE)
+		{
+			if (fractal_iteration(zero, constant) == ITERATION_LIMIT + 1)
+				ft_printf(".");
+			else
+				ft_printf(" ");
+			constant.r += unit;
+		}
+		j = 0;
+		constant.r = rstart;
+		constant.i -= unit;
+		ft_printf("\n");
+	}
+}
+
