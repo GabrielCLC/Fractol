@@ -20,7 +20,6 @@ typedef struct	complex_number
 }		complx;
 
 int		fractal_iteration(complx nbr, complx constant);
-int		mandelbrot_iteration(complx constant);
 void	print_mandelbrot(complx constant, double unit);
 void	print_julia(complx point, complx constant, double unit);
 double	absolute_value(complx nbr);
