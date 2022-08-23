@@ -19,13 +19,14 @@ typedef struct	complex_number
 	double	i;	
 }		complx;
 
-void	free_grid(char **grid);
-char	**get_grid(int size);
+int		julia_iteration(complx nbr, complx constant);
+int		mandelbrot_iteration(complx constant);
+void	print_mandelbrot(complx constant, double unit);
+void	print_julia(complx point, complx constant, double unit);
 double	absolute_value(complx nbr);
 complx	find_start(complx center, double unit);
 complx	complx_pow(complx nbr, int power);
 complx	complx_sum(complx a, complx b);
-complx	mandelbrot_iteration(complx nbr, complx constant);
 
 
 #endif
