@@ -65,14 +65,20 @@ void    print_mandelbrot(complx constant, double unit, t_data *img)
 	zero.r = zero.i = 0;
 	rstart = constant.r;
 	i = j = 0;
-	while (i < GRID_SIZE)
+	while (i < GRID_SIZE / 2)
 	{
 		while (j < GRID_SIZE)
 		{
 			if (fractal_iteration(zero, constant) == ITERATION_LIMIT + 1)
+			{
 				pixel_put(img, j, i, 0X00000000);
+				pixel_put(img, j, GRID_SIZE - 1 - i, 0X00000000);
+			}
 			else
+			{
 				pixel_put(img, j, i, 0X000000FF);
+				pixel_put(img, j, GRID_SIZE - 1 - i, 0X000000FF);
+			}
 			constant.r += unit;
 			j++;
 		}
