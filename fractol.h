@@ -6,7 +6,7 @@
 # include "mlx/mlx.h"
 
 # ifndef GRID_SIZE
-#  define GRID_SIZE 80
+#  define GRID_SIZE 1000
 # endif
 
 # ifndef ITERATION_LIMIT
@@ -28,10 +28,12 @@ typedef struct	complex_number
 	double	i;	
 }		complx;
 
+int		rgba(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
 int		fractal_iteration(complx nbr, complx constant);
-void	display_fractal(char *type);
-void	print_mandelbrot(complx constant, double unit);
-void	print_julia(complx point, complx constant, double unit);
+void	pixel_put(t_data *data, int x, int y, int color);
+void	draw_fractal(char *type, t_data *img);
+void	print_mandelbrot(complx constant, double unit, t_data *img);
+void	print_julia(complx point, complx constant, double unit, t_data *img);
 double	absolute_value(complx nbr);
 complx	find_start(complx center, double unit);
 complx	complx_pow(complx nbr, int power);

@@ -23,32 +23,33 @@ int fractal_iteration(complx nbr, complx constant)
 	return (i);
 }
 
-void    print_julia(complx point, complx constant, double unit)
+void    print_julia(complx point, complx constant, double unit, t_data *img)
 {
 	int     i;
 	int     j;
 	double  rstart;
-	
+
 	rstart = point.r;
 	i = j = 0;
-	while (i++ < GRID_SIZE)
+	while (i < GRID_SIZE)
 	{
-		while (j++ < GRID_SIZE)
+		while (j < GRID_SIZE)
 		{
 			if (fractal_iteration(point, constant) == ITERATION_LIMIT + 1)
-				ft_printf(".");
+				pixel_put(img, j, i, 0X00000000);
 			else
-				ft_printf(" ");
+				pixel_put(img, j, i, 0X000000FF);
 			point.r += unit;
+			j++;
 		}
 		j = 0;
 		point.r = rstart;
 		point.i -= unit;
-		ft_printf("\n");
+		i++;
 	}
 }
 
-void    print_mandelbrot(complx constant, double unit)
+void    print_mandelbrot(complx constant, double unit, t_data *img)
 {
 	int     i;
 	int     j;
@@ -58,24 +59,25 @@ void    print_mandelbrot(complx constant, double unit)
 	zero.r = zero.i = 0;
 	rstart = constant.r;
 	i = j = 0;
-	while (i++ < GRID_SIZE)
+	while (i < GRID_SIZE)
 	{
-		while (j++ < GRID_SIZE)
+		while (j < GRID_SIZE)
 		{
 			if (fractal_iteration(zero, constant) == ITERATION_LIMIT + 1)
-				ft_printf(".");
+				pixel_put(img, j, i, 0X00000000);
 			else
-				ft_printf(" ");
+				pixel_put(img, j, i, 0X000000FF);
 			constant.r += unit;
+			j++;
 		}
 		j = 0;
 		constant.r = rstart;
 		constant.i -= unit;
-		ft_printf("\n");
+		i++;
 	}
 }
 
-void	display_fractal(char *type)
+void	draw_fractal(char *type, t_data *img)
 {
 	complx	center;
 	complx	start;
@@ -83,12 +85,12 @@ void	display_fractal(char *type)
 	double	unit;
 
 	center.r = center.i = 0;
-	constant.r = -0.8;
-	constant.i = 0.156;
+	constant.r = 0.285;
+	constant.i = 0.;
 	unit = (double) 3 / (double) GRID_SIZE;
 	start = find_start(center, unit);
 	if (!ft_strncmp(type, "mandelbrot", 10))
-		print_mandelbrot(start, unit);
+		print_mandelbrot(start, unit, img);
 	else if (!ft_strncmp(type, "julia", 5))
-		print_julia(start, constant, unit);
+		print_julia(start, constant, unit, img);
 }
