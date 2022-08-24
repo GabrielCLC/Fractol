@@ -1,6 +1,6 @@
 NAME		= fractol
 
-SRCS		= fractol.c operations.c fractol_utils.c mini_utils.c 
+SRCS		= fractol.c operations.c fractol_utils.c color.c 
 
 MINILIBX	= -Lmlx -lmlx -framework OpenGL -framework appKit
 

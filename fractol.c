@@ -9,7 +9,6 @@ int	main(int argc, char *argv[])
 		return (0);
 	}
 	void	*mlx;
-	int		color;
 	void	*mlx_win;
 	t_data	img;
 
