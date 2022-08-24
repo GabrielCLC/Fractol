@@ -6,6 +6,13 @@ double	absolute_value(complx nbr)
 	return (sqrt(pow(nbr.r, 2) + pow(nbr.i, 2)));
 }
 
+double	modulus(double nbr)
+{
+	if (nbr < 0)
+		return (nbr * (-1));
+	else return (nbr);
+}
+
 complx	complx_pow(complx nbr, int power)
 {
 	complx	result;

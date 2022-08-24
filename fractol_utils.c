@@ -27,6 +27,8 @@ void    print_julia(complx point, complx constant, double unit, t_data *img)
 {
 	int     i;
 	int     j;
+	int		iterations;
+	int		color;
 	double  rstart;
 
 	rstart = point.r;
@@ -35,16 +37,10 @@ void    print_julia(complx point, complx constant, double unit, t_data *img)
 	{
 		while (j < GRID_SIZE)
 		{
-			if (fractal_iteration(point, constant) == ITERATION_LIMIT + 1)
-			{
-				pixel_put(img, j, i, 0X00000000);
-				pixel_put(img, GRID_SIZE - j - 1, GRID_SIZE - i - 1, 0X00000000);
-			}
-			else
-			{
-				pixel_put(img, j, i, 0X000000FF);
-				pixel_put(img, GRID_SIZE - j - 1, GRID_SIZE - i - 1, 0X000000FF);
-			}
+			iterations = fractal_iteration(point, constant);
+			color = get_color(iterations);
+			pixel_put(img, j, i, color);
+			pixel_put(img, GRID_SIZE - j - 1, GRID_SIZE - i - 1, color);
 			point.r += unit;
 			j++;
 		}
@@ -60,6 +56,8 @@ void    print_mandelbrot(complx constant, double unit, t_data *img)
 	int     i;
 	int     j;
 	double  rstart;
+	int		color;
+	int		iterations;
 	complx  zero;
 	
 	zero.r = zero.i = 0;
@@ -69,16 +67,10 @@ void    print_mandelbrot(complx constant, double unit, t_data *img)
 	{
 		while (j < GRID_SIZE)
 		{
-			if (fractal_iteration(zero, constant) == ITERATION_LIMIT + 1)
-			{
-				pixel_put(img, j, i, 0X00000000);
-				pixel_put(img, j, GRID_SIZE - 1 - i, 0X00000000);
-			}
-			else
-			{
-				pixel_put(img, j, i, 0X000000FF);
-				pixel_put(img, j, GRID_SIZE - 1 - i, 0X000000FF);
-			}
+			iterations = fractal_iteration(zero, constant);
+			color = get_color(iterations);
+			pixel_put(img, j, i, color);
+			pixel_put(img, j, GRID_SIZE - 1 - i, color);
 			constant.r += unit;
 			j++;
 		}
@@ -97,8 +89,8 @@ void	draw_fractal(char *type, t_data *img)
 	double	unit;
 
 	center.r = center.i = 0;
-	constant.r = -0.8;
-	constant.i = 0.156;
+	constant.r = 0.285;
+	constant.i = 0.01;
 	unit = (double) 3 / (double) GRID_SIZE;
 	start = find_start(center, unit);
 	if (!ft_strncmp(type, "mandelbrot", 10))

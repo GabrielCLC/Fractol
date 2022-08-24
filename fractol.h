@@ -28,6 +28,8 @@ typedef struct	complex_number
 	double	i;	
 }		complx;
 
+int		hsv_to_rgb(double h, double s, double v);
+int		get_color(int iterations);
 int		rgba(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
 int		fractal_iteration(complx nbr, complx constant);
 void	pixel_put(t_data *data, int x, int y, int color);
@@ -35,6 +37,7 @@ void	draw_fractal(char *type, t_data *img);
 void	print_mandelbrot(complx constant, double unit, t_data *img);
 void	print_julia(complx point, complx constant, double unit, t_data *img);
 double	absolute_value(complx nbr);
+double	modulus(double nbr);
 complx	find_start(complx center, double unit);
 complx	complx_pow(complx nbr, int power);
 complx	complx_sum(complx a, complx b);
