@@ -10,7 +10,7 @@
 # endif
 
 # ifndef ITERATION_LIMIT
-#  define ITERATION_LIMIT 200
+#  define ITERATION_LIMIT 1000
 # endif
 
 typedef struct	s_data

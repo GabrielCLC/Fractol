@@ -20,22 +20,20 @@ int	hsv_to_rgb(double h, double s, double v)
 	double	z;
 	int		rgb;
 
-	if (v == 0)
-		return (0);
 	rgb = 0;
 	m = 255 - s;
-	M = 255.0 * (255.0 / v);
+	M = 255.0 * (v / 255.0);
 	z = (v - m) * (1.0 - modulus(((h / 60) / 2.0 - (int) (h / 60) / 2) - 1.0));
 	if (h >= 0 && h < 60)
-		rgb = (int) M << 16 | (int) (z + m) << 8 | (int) m;
+		rgb = (int) (z + m) << 16 | (int) m << 8 | (int) M;
 	else if (h >= 60 && h < 120)
-		rgb = (int) (z + m)  << 16 | (int) M << 8 | (int) m;
+		rgb = (int) m << 16 | (int) (z + m) << 8 | (int) M;
 	else if (h >= 120 && h < 180)
 		rgb = (int) m << 16 | (int) M << 8 | (int) (z + m);
 	else if (h >= 180 && h < 240)
-		rgb = (int) m << 16 | (int) (z + m) << 8 | (int) M;
+		rgb = (int) (z + m)  << 16 | (int) M << 8 | (int) m;
 	else if (h >= 240 && h < 300)
-		rgb = (int) (z + m) << 16 | (int) m << 8 | (int) M;
+		rgb = (int) M << 16 | (int) (z + m) << 8 | (int) m;
 	else
 		rgb = (int) M << 16 | (int) m << 8 | (int) (z + m);
 	return (rgb);
@@ -49,12 +47,14 @@ int	get_color(int iterations)
 	double	v;
 	int		color;
 
-	h = 360.0 * (double) iterations / (double) ITERATION_LIMIT;
 	s = 255;
+	h = 360.0 * (double) iterations / ITERATION_LIMIT;
 	if (iterations == ITERATION_LIMIT + 1)
-		v = 0;
+		return (0);
+	if (iterations <= 210)
+		v = (50 + 10 * (iterations / 10)) + 10 * iterations / (10 * (iterations / 10 + 1));
 	else
-		v = 255;
+		v = 255; 
 	color = hsv_to_rgb(h, s, v);
 	return (color);
 }

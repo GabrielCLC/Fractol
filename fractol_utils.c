@@ -9,7 +9,7 @@ complx	find_start(complx center, double unit)
 	return (start);
 }
 
-int fractal_iteration(complx nbr, complx constant)
+int	fractal_iteration(complx nbr, complx constant)
 {
 	int     i;
 	                                                                                                               
@@ -19,7 +19,8 @@ int fractal_iteration(complx nbr, complx constant)
 		nbr = complx_sum(complx_pow(nbr, 2), constant);
 		if (absolute_value(nbr) > 2)
 			break;
-	}   
+	}
+// 	i = (i == ITERATION_LIMIT + 1) ? i : i + 1 - log10(sqrt(absolute_value(nbr)));
 	return (i);
 }
 
@@ -27,7 +28,7 @@ void    print_julia(complx point, complx constant, double unit, t_data *img)
 {
 	int     i;
 	int     j;
-	int		iterations;
+	double	iterations;
 	int		color;
 	double  rstart;
 
@@ -89,8 +90,8 @@ void	draw_fractal(char *type, t_data *img)
 	double	unit;
 
 	center.r = center.i = 0;
-	constant.r = 0.285;
-	constant.i = 0.01;
+	constant.r = -0.7269;
+	constant.i = 0.1889;
 	unit = (double) 3 / (double) GRID_SIZE;
 	start = find_start(center, unit);
 	if (!ft_strncmp(type, "mandelbrot", 10))
