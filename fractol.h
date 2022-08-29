@@ -10,7 +10,7 @@
 # endif
 
 # ifndef ITERATION_LIMIT
-#  define ITERATION_LIMIT 1000
+#  define ITERATION_LIMIT 700
 # endif
 
 typedef struct	s_data
@@ -22,17 +22,27 @@ typedef struct	s_data
 	int		endian;
 }				t_data;
 
+typedef struct	s_vars
+{
+	void	*mlx;
+	void	*win;
+}				t_vars;
+
 typedef struct	complex_number
 {
 	double	r;
 	double	i;	
 }		complx;
 
+int		handle_mouse(int button, int x, int y, t_vars *vars);
+int		handle_destroy(t_vars *vars);
+int		handle_keypress(int keycode, t_vars *vars);
 int		hsv_to_rgb(double h, double s, double v);
 int		get_color(int iterations);
 int		rgba(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
 int		fractal_iteration(complx nbr, complx constant);
 void	pixel_put(t_data *data, int x, int y, int color);
+void	initialize_window(t_vars *vars, t_data *img);
 void	draw_fractal(char *type, t_data *img);
 void	print_mandelbrot(complx constant, double unit, t_data *img);
 void	print_julia(complx point, complx constant, double unit, t_data *img);
