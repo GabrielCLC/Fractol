@@ -30,7 +30,7 @@ libft:
 			cd libft && $(MAKE)
 
 compile:
-			$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MINILIBX) $(MATH) -o fractol 
+			$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MINILIBX) $(MATH) -o $(NAME) 
 
 clean:
 			$(RM) $(OBJS)

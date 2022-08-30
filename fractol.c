@@ -19,9 +19,14 @@ static void	initialize_fractal(int argc, char **argv, t_render *fractal)
 	(void) argv;
 }
 
-int	render_next_frame(t_img *img)
+int	render_next_frame(t_info *info)
 {
-	(void) img;
+	if (info->render->printed == 0)
+	{
+		draw_fractal(info);
+		mlx_put_image_to_window(info->vars->mlx, info->vars->win, info->img->img, 0, 0);
+		info->render->printed = 1;
+	}
 	return (0);
 }
 
@@ -29,18 +34,17 @@ int	main(int argc, char *argv[])
 {
 	t_vars		vars;
 	t_img		img;
-	t_render	fractal;
+	t_render	render;
 	t_info		info;
 
-	initialize_fractal(argc, argv, &fractal);
-	initialize_window(&vars, &img);
 	info.vars = &vars;
-	info.render = &fractal;
+	info.render = &render;
 	info.img = &img;
-	draw_fractal(&info);
-	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
-
-//	mlx_loop_hook(vars.mlx, render_next_frame, &img);
+	initialize_fractal(argc, argv, info.render);
+	initialize_window(&info);
+//	draw_fractal(&info);
+//	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
+	mlx_loop_hook(vars.mlx, render_next_frame, &info);
 	mlx_loop(vars.mlx);
 
 }

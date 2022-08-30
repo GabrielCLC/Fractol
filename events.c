@@ -6,7 +6,7 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:16:33 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/08/29 16:14:01 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/08/30 16:25:54 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ int	handle_keypress(int keycode, t_vars *vars)
 	return (0);
 }
 
-int	handle_mouse(int button, int x, int y, t_vars *vars)
+int	handle_mouse(int button, int x, int y, t_render *render)
 {
 	if (button == 4)
-		ft_printf("zoomed out at (%d, %d)\n", x, y);
+		render->zoom = render->zoom * (1.0 / 3);
 	else if (button == 5)
-		ft_printf("zoomed in at (%d, %d)\n", x, y);
-	(void) vars;
+		render->zoom = render->zoom * 3;
+	render->printed = 0;
 	return (0);
 }
 

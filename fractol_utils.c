@@ -24,73 +24,70 @@ int	fractal_iteration(complx nbr, complx constant)
 	return (i);
 }
 
-void    print_julia(complx point, complx constant, double unit, t_img *img)
+void    print_julia(complx point, double unit, t_info *info)
 {
 	int     i;
 	int     j;
-	int	iterations;
+	int		iterations;
 	int		color;
-	double  rstart;
-
-	rstart = point.r;
+	
+	point = info->render->start;
 	i = j = 0;
 	while (i < GRID_SIZE / 2)
 	{
 		while (j < GRID_SIZE)
 		{
-			iterations = fractal_iteration(point, constant);
+			iterations = fractal_iteration(point, info->render->constant);
 			color = get_color(iterations);
-			pixel_put(img, j, i, color);
-			pixel_put(img, GRID_SIZE - j - 1, GRID_SIZE - i - 1, color);
+			pixel_put(info->img, j, i, color);
+			pixel_put(info->img, GRID_SIZE - j - 1, GRID_SIZE - i - 1, color);
 			point.r += unit;
 			j++;
 		}
 		j = 0;
-		point.r = rstart;
+		point.r = info->render->start.r;
 		point.i -= unit;
 		i++;
 	}
 }
 
-void    print_mandelbrot(complx constant, double unit, t_img *img)
+void    print_mandelbrot(double unit, t_info *info)
 {
 	int     i;
 	int     j;
-	double  rstart;
 	int		color;
 	int		iterations;
 	complx  zero;
 	
 	zero.r = zero.i = 0;
-	rstart = constant.r;
+	info->render->constant = info->render->start;
 	i = j = 0;
-	while (i < GRID_SIZE / 2)
+	while (i < GRID_SIZE)
 	{
 		while (j < GRID_SIZE)
 		{
-			iterations = fractal_iteration(zero, constant);
+			iterations = fractal_iteration(zero, info->render->constant);
 			color = get_color(iterations);
-			pixel_put(img, j, i, color);
-			pixel_put(img, j, GRID_SIZE - 1 - i, color);
-			constant.r += unit;
+			pixel_put(info->img, j, i, color);
+//			pixel_put(info->img, j, GRID_SIZE - 1 - i, color);
+			info->render->constant.r += unit;
 			j++;
 		}
 		j = 0;
-		constant.r = rstart;
-		constant.i -= unit;
+		info->render->constant.r = info->render->start.r;
+		info->render->constant.i -= unit;
 		i++;
 	}
 }
 
 void	draw_fractal(t_info *info)
 {
-	complx	start;
 	double	unit;
 
 	unit = 3 / (GRID_SIZE * info->render->zoom);
-	start = find_start(info->render->center, unit);
+	info->render->start = find_start(info->render->center, unit);
 	if (!ft_strncmp(info->render->type, "mandelbrot", 10))
-		print_mandelbrot(start, unit, info->img);
+		print_mandelbrot(unit, info);
 	else if (!ft_strncmp(info->render->type, "julia", 5))
-		print_julia(start, info->render->constant, unit, info->img);
+		print_julia(info->render->start, unit, info);
 }

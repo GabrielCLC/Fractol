@@ -10,7 +10,7 @@
 # endif
 
 # ifndef ITERATION_LIMIT
-#  define ITERATION_LIMIT 700
+#  define ITERATION_LIMIT 300
 # endif
 
 typedef struct	complex_number
@@ -36,6 +36,7 @@ typedef struct	s_vars
 
 typedef struct	s_render
 {
+	complx	start;
 	complx	center;
 	complx	constant;
 	double	zoom;
@@ -52,7 +53,7 @@ typedef struct	s_info
 }				t_info;
 
 
-int		handle_mouse(int button, int x, int y, t_vars *vars);
+int		handle_mouse(int button, int x, int y, t_render *render);
 int		handle_destroy(t_vars *vars);
 int		handle_keypress(int keycode, t_vars *vars);
 int		hsv_to_rgb(double h, double s, double v);
@@ -60,10 +61,10 @@ int		get_color(int iterations);
 int		rgba(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
 int		fractal_iteration(complx nbr, complx constant);
 void	pixel_put(t_img *data, int x, int y, int color);
-void	initialize_window(t_vars *vars, t_img *img);
+void	initialize_window(t_info *info);
 void	draw_fractal(t_info *info);
-void	print_mandelbrot(complx constant, double unit, t_img *img);
-void	print_julia(complx point, complx constant, double unit, t_img *img);
+void	print_mandelbrot(double unit, t_info *img);
+void	print_julia(complx point, double unit, t_info *info);
 double	absolute_value(complx nbr);
 double	modulus(double nbr);
 complx	find_start(complx center, double unit);
