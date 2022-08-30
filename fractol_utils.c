@@ -9,12 +9,12 @@ complx	find_start(complx center, double unit)
 	return (start);
 }
 
-int	fractal_iteration(complx nbr, complx constant)
+int	fractal_iteration(complx nbr, complx constant, int limit)
 {
 	int	i;
 	                                                                                                               
 	i = 0;
-	while (i++ < ITERATION_LIMIT)
+	while (i++ < limit)
 	{   
 		nbr = complx_sum(complx_pow(nbr, 2), constant);
 		if (absolute_value(nbr) > 2)
@@ -37,8 +37,8 @@ void    print_julia(complx point, double unit, t_info *info)
 	{
 		while (j < GRID_SIZE)
 		{
-			iterations = fractal_iteration(point, info->render->constant);
-			color = get_color(iterations);
+			iterations = fractal_iteration(point, info->render->constant, info->render->max_iterations);
+			color = get_color(iterations, info->render->max_iterations);
 			pixel_put(info->img, j, i, color);
 			pixel_put(info->img, GRID_SIZE - j - 1, GRID_SIZE - i - 1, color);
 			point.r += unit;
@@ -66,8 +66,8 @@ void    print_mandelbrot(double unit, t_info *info)
 	{
 		while (j < GRID_SIZE)
 		{
-			iterations = fractal_iteration(zero, info->render->constant);
-			color = get_color(iterations);
+			iterations = fractal_iteration(zero, info->render->constant, info->render->max_iterations);
+			color = get_color(iterations, info->render->max_iterations);
 			pixel_put(info->img, j, i, color);
 //			pixel_put(info->img, j, GRID_SIZE - 1 - i, color);
 			info->render->constant.r += unit;

@@ -9,9 +9,9 @@
 #  define GRID_SIZE 1000
 # endif
 
-# ifndef ITERATION_LIMIT
-#  define ITERATION_LIMIT 300
-# endif
+//# ifndef ITERATION_LIMIT
+//#  define ITERATION_LIMIT 300
+//# endif
 
 typedef struct	complex_number
 {
@@ -57,9 +57,9 @@ int		handle_mouse(int button, int x, int y, t_render *render);
 int		handle_destroy(t_vars *vars);
 int		handle_keypress(int keycode, t_vars *vars);
 int		hsv_to_rgb(double h, double s, double v);
-int		get_color(int iterations);
+int		get_color(int iterations, int limit);
 int		rgba(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
-int		fractal_iteration(complx nbr, complx constant);
+int		fractal_iteration(complx nbr, complx constant, int limit);
 void	pixel_put(t_img *data, int x, int y, int color);
 void	initialize_window(t_info *info);
 void	draw_fractal(t_info *info);

@@ -40,7 +40,7 @@ int	hsv_to_rgb(double h, double s, double v)
 
 }
 
-int	get_color(int iterations)
+int	get_color(int iterations, int limit)
 {
 	double	h;
 	double	s;
@@ -48,8 +48,8 @@ int	get_color(int iterations)
 	int		color;
 
 	s = 255;
-	h = 360.0 * (double) iterations / ITERATION_LIMIT;
-	if (iterations == ITERATION_LIMIT + 1)
+	h = 360.0 * (double) iterations / limit;
+	if (iterations == limit + 1)
 		return (0);
 	if (iterations <= 210)
 		v = (50 + 10 * (iterations / 10)) + 10 * iterations / (10 * (iterations / 10 + 1));

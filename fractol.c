@@ -14,7 +14,7 @@ static void	initialize_fractal(int argc, char **argv, t_render *fractal)
 	fractal->constant.r = -0.7269;
 	fractal->constant.i = 0.1889;
 	fractal->zoom = 1;
-	fractal->max_iterations = 500;
+	fractal->max_iterations = 280;
 	fractal->printed = 0;
 	(void) argv;
 }
