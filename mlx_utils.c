@@ -6,13 +6,13 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 16:00:57 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/08/29 16:12:35 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/08/30 10:31:06 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	initialize_window(t_vars *vars, t_data *img)
+void	initialize_window(t_vars *vars, t_img *img)
 {
 	vars->mlx = mlx_init();
 	img->img = mlx_new_image(vars->mlx, GRID_SIZE, GRID_SIZE);

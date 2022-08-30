@@ -13,6 +13,12 @@
 #  define ITERATION_LIMIT 700
 # endif
 
+typedef struct	complex_number
+{
+	double	r;
+	double	i;	
+}		complx;
+
 typedef struct	s_data
 {
 	void	*img;
@@ -20,7 +26,7 @@ typedef struct	s_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}				t_data;
+}				t_img;
 
 typedef struct	s_vars
 {
@@ -28,11 +34,23 @@ typedef struct	s_vars
 	void	*win;
 }				t_vars;
 
-typedef struct	complex_number
+typedef struct	s_render
 {
-	double	r;
-	double	i;	
-}		complx;
+	complx	center;
+	complx	constant;
+	double	zoom;
+	int		max_iterations;
+	char	*type;
+	int		printed;
+}				t_render;
+
+typedef struct	s_info
+{
+	t_vars		*vars;
+	t_img		*img;
+	t_render	*render;
+}				t_info;
+
 
 int		handle_mouse(int button, int x, int y, t_vars *vars);
 int		handle_destroy(t_vars *vars);
@@ -41,11 +59,11 @@ int		hsv_to_rgb(double h, double s, double v);
 int		get_color(int iterations);
 int		rgba(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
 int		fractal_iteration(complx nbr, complx constant);
-void	pixel_put(t_data *data, int x, int y, int color);
-void	initialize_window(t_vars *vars, t_data *img);
-void	draw_fractal(char *type, t_data *img);
-void	print_mandelbrot(complx constant, double unit, t_data *img);
-void	print_julia(complx point, complx constant, double unit, t_data *img);
+void	pixel_put(t_img *data, int x, int y, int color);
+void	initialize_window(t_vars *vars, t_img *img);
+void	draw_fractal(t_info *info);
+void	print_mandelbrot(complx constant, double unit, t_img *img);
+void	print_julia(complx point, complx constant, double unit, t_img *img);
 double	absolute_value(complx nbr);
 double	modulus(double nbr);
 complx	find_start(complx center, double unit);

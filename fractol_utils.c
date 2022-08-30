@@ -24,7 +24,7 @@ int	fractal_iteration(complx nbr, complx constant)
 	return (i);
 }
 
-void    print_julia(complx point, complx constant, double unit, t_data *img)
+void    print_julia(complx point, complx constant, double unit, t_img *img)
 {
 	int     i;
 	int     j;
@@ -52,7 +52,7 @@ void    print_julia(complx point, complx constant, double unit, t_data *img)
 	}
 }
 
-void    print_mandelbrot(complx constant, double unit, t_data *img)
+void    print_mandelbrot(complx constant, double unit, t_img *img)
 {
 	int     i;
 	int     j;
@@ -82,20 +82,15 @@ void    print_mandelbrot(complx constant, double unit, t_data *img)
 	}
 }
 
-void	draw_fractal(char *type, t_data *img)
+void	draw_fractal(t_info *info)
 {
-	complx	center;
 	complx	start;
-	complx	constant;
 	double	unit;
 
-	center.r = center.i = 0;
-	constant.r = -0.7269;
-	constant.i = 0.1889;
-	unit = (double) 3 / (GRID_SIZE * 100000);
-	start = find_start(center, unit);
-	if (!ft_strncmp(type, "mandelbrot", 10))
-		print_mandelbrot(start, unit, img);
-	else if (!ft_strncmp(type, "julia", 5))
-		print_julia(start, constant, unit, img);
+	unit = 3 / (GRID_SIZE * info->render->zoom);
+	start = find_start(info->render->center, unit);
+	if (!ft_strncmp(info->render->type, "mandelbrot", 10))
+		print_mandelbrot(start, unit, info->img);
+	else if (!ft_strncmp(info->render->type, "julia", 5))
+		print_julia(start, info->render->constant, unit, info->img);
 }
