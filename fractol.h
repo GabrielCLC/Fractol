@@ -40,9 +40,11 @@ typedef struct	s_render
 	complx	center;
 	complx	constant;
 	double	zoom;
+	double	unit;
 	int		max_iterations;
 	char	*type;
 	int		printed;
+	int		*color;
 }				t_render;
 
 typedef struct	s_info
@@ -59,14 +61,15 @@ int		handle_keypress(int keycode, t_vars *vars);
 int		hsv_to_rgb(double h, double s, double v);
 int		get_color(int iterations, int limit);
 int		rgba(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
-int		fractal_iteration(complx nbr, complx constant, int limit);
-void	pixel_put(t_img *data, int x, int y, int color);
+int		fractal_iteration(complx z, complx c, int limit);
+int		*get_color_array(int limit);
+void	pixel_put(t_img *img, int x, int y, int color);
+void	initialize_image(t_info *info);
 void	initialize_window(t_info *info);
 void	draw_fractal(t_info *info);
 void	print_mandelbrot(double unit, t_info *img);
 void	print_julia(complx point, double unit, t_info *info);
 double	absolute_value(complx nbr);
-double	modulus(double nbr);
 complx	find_start(complx center, double unit);
 complx	complx_pow(complx nbr, int power);
 complx	complx_sum(complx a, complx b);

@@ -1,18 +1,16 @@
 #include "fractol.h"
 
-void	pixel_put(t_img *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
 int	rgba(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
 {
 	return (a << 24 | r << 16 | g << 8 | b);
 }
 
+static double	modulus(double nbr)
+{
+	if (nbr < 0)
+		nbr *= -1;
+	return (nbr);
+}
 int	hsv_to_rgb(double h, double s, double v)
 {
 	double	m;
@@ -48,13 +46,34 @@ int	get_color(int iterations, int limit)
 	int		color;
 
 	s = 255;
-	h = 360.0 * (double) iterations / limit;
-	if (iterations == limit + 1)
+	h = 120 * (double) iterations / limit;
+	v = 50 + 215 * iterations / limit;
+	if (iterations == limit)
 		return (0);
-	if (iterations <= 210)
-		v = (50 + 10 * (iterations / 10)) + 10 * iterations / (10 * (iterations / 10 + 1));
-	else
-		v = 255; 
+//	if (iterations <= 210)
+//		v = (50 + 10 * (iterations / 10)) + 10 * iterations / (10 * (iterations / 10 + 1));
+//	else
+//		v = 255; 
 	color = hsv_to_rgb(h, s, v);
 	return (color);
+}
+
+int	*get_color_array(int limit)
+{
+	int	*array;
+	int	i;
+	
+	array = malloc(sizeof(int) * limit);
+	if (!array)
+	{
+		ft_printf("failed to allocate color array\n");
+		exit(0);
+	}
+	i = 0;
+	while (i < limit)
+	{
+		array[i] = get_color(i, limit);
+		i++;
+	}
+	return (array);
 }

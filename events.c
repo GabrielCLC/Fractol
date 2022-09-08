@@ -6,7 +6,7 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:16:33 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/08/30 16:25:54 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/09/08 15:27:56 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	handle_keypress(int keycode, t_vars *vars)
 int	handle_mouse(int button, int x, int y, t_render *render)
 {
 	if (button == 4)
-		render->zoom = render->zoom * (1.0 / 3);
+		render->unit *= 0.8;
 	else if (button == 5)
-		render->zoom = render->zoom * 3;
+		render->unit *= 1.1;
 	render->printed = 0;
 	return (0);
 }

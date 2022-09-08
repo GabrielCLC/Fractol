@@ -1,4 +1,5 @@
 #include "fractol.h"
+#include <stdio.h>
 
 complx	find_start(complx center, double unit)
 {
@@ -9,18 +10,22 @@ complx	find_start(complx center, double unit)
 	return (start);
 }
 
-int	fractal_iteration(complx nbr, complx constant, int limit)
+int	fractal_iteration(complx z, complx c, int limit)
 {
-	int	i;
-	                                                                                                               
+	int		i;
+	complx	temp;
+	 
+	temp = z;
 	i = 0;
-	while (i++ < limit)
-	{   
-		nbr = complx_sum(complx_pow(nbr, 2), constant);
-		if (absolute_value(nbr) > 2)
+	while (i < limit)
+	{ 
+		if ((z.r * z.r) + (z.i * z.i) > 4)
 			break;
+		temp.r = (z.r * z.r - z.i * z.i) + c.r;
+		temp.i = (2 * z.r * z.i) + c.i;
+		z = temp;
+		i++;
 	}
-// 	i = (i == ITERATION_LIMIT + 1) ? i : i + 1 - log10(sqrt(absolute_value(nbr)));
 	return (i);
 }
 
@@ -29,18 +34,15 @@ void    print_julia(complx point, double unit, t_info *info)
 	int     i;
 	int     j;
 	int		iterations;
-	int		color;
 	
 	point = info->render->start;
 	i = j = 0;
-	while (i < GRID_SIZE / 2)
+	while (i < GRID_SIZE)
 	{
 		while (j < GRID_SIZE)
 		{
 			iterations = fractal_iteration(point, info->render->constant, info->render->max_iterations);
-			color = get_color(iterations, info->render->max_iterations);
-			pixel_put(info->img, j, i, color);
-			pixel_put(info->img, GRID_SIZE - j - 1, GRID_SIZE - i - 1, color);
+			pixel_put(info->img, j, i, info->render->color[iterations]);
 			point.r += unit;
 			j++;
 		}
@@ -69,7 +71,6 @@ void    print_mandelbrot(double unit, t_info *info)
 			iterations = fractal_iteration(zero, info->render->constant, info->render->max_iterations);
 			color = get_color(iterations, info->render->max_iterations);
 			pixel_put(info->img, j, i, color);
-//			pixel_put(info->img, j, GRID_SIZE - 1 - i, color);
 			info->render->constant.r += unit;
 			j++;
 		}

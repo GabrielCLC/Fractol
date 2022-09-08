@@ -1,6 +1,6 @@
 NAME		= fractol
 
-SRCS		= fractol.c operations.c fractol_utils.c color.c events.c mlx_utils.c 
+SRCS		= fractol.c fractol_utils.c color.c events.c mlx_utils.c 
 
 OBJS		= $(SRCS:.c=.o)
 
@@ -14,7 +14,7 @@ CC			= cc
 
 RM 			= rm -f
 
-CFLAGS		= -Wall -Wextra #-Werror
+CFLAGS		= -Wall -Wextra -g#-Werror
 
 .c.o:
 			$(CC) $(CFLAGS) -c $(SRCS)
@@ -30,7 +30,7 @@ libft:
 			cd libft && $(MAKE)
 
 compile:
-			$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MINILIBX) $(MATH) -o $(NAME) 
+			$(CC) $(CFLAGS) $(SRCS) $(LIBFT) $(MINILIBX) $(MATH) -o $(NAME) 
 
 clean:
 			$(RM) $(OBJS)
