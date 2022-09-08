@@ -11,9 +11,9 @@ static void	initialize_fractal(int argc, char **argv, t_render *render)
 	render->center.r = 0;
 	render->center.i = 0;
 	render->type = argv[1];
-	render->constant.r = -0.8;
-	render->constant.i = 0.156;
-	render->zoom = 1;
+	render->constant.r = 0.285;
+	render->constant.i = 0.01;
+	render->unit = 3.0 / GRID_SIZE;
 	render->max_iterations = 500;
 	render->printed = 0;
 	render->color = get_color_array(render->max_iterations);

@@ -68,7 +68,7 @@ void	initialize_image(t_info *info);
 void	initialize_window(t_info *info);
 void	draw_fractal(t_info *info);
 void	print_mandelbrot(double unit, t_info *img);
-void	print_julia(complx point, double unit, t_info *info);
+void	print_julia(complx point, t_info *info);
 double	absolute_value(complx nbr);
 complx	find_start(complx center, double unit);
 complx	complx_pow(complx nbr, int power);

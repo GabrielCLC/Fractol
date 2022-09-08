@@ -29,7 +29,7 @@ int	fractal_iteration(complx z, complx c, int limit)
 	return (i);
 }
 
-void    print_julia(complx point, double unit, t_info *info)
+void    print_julia(complx point, t_info *info)
 {
 	int     i;
 	int     j;
@@ -43,12 +43,12 @@ void    print_julia(complx point, double unit, t_info *info)
 		{
 			iterations = fractal_iteration(point, info->render->constant, info->render->max_iterations);
 			pixel_put(info->img, j, i, info->render->color[iterations]);
-			point.r += unit;
+				point.r += info->render->unit;
 			j++;
 		}
 		j = 0;
 		point.r = info->render->start.r;
-		point.i -= unit;
+		point.i -= info->render->unit;
 		i++;
 	}
 }
@@ -83,12 +83,9 @@ void    print_mandelbrot(double unit, t_info *info)
 
 void	draw_fractal(t_info *info)
 {
-	double	unit;
-
-	unit = 3 / (GRID_SIZE * info->render->zoom);
-	info->render->start = find_start(info->render->center, unit);
+	info->render->start = find_start(info->render->center, info->render->unit);
 	if (!ft_strncmp(info->render->type, "mandelbrot", 10))
-		print_mandelbrot(unit, info);
+		print_mandelbrot(info->render->unit, info);
 	else if (!ft_strncmp(info->render->type, "julia", 5))
-		print_julia(info->render->start, unit, info);
+		print_julia(info->render->start, info);
 }
