@@ -6,33 +6,32 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:16:33 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/09/08 16:14:59 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/09/09 12:39:50 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <stdio.h>
 
-static complx	find_center(complx previous, double unit, int x, int y)
-{
-	complx	center;
-	complx	start;
-	
-	start = find_start(previous, unit);
-	center.r = start.r + x * unit;
-	center.i = start.i - y * unit;
-	return (center);
-}
-
 int	handle_keypress(int keycode, t_vars *vars)
 {
-//	ft_printf("keycode = %d\n", keycode);
 	if (keycode == 53)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);
 		exit(0);
 	}
 	return (0);
+}
+
+static complx	find_center(complx previous, double unit, int x, int y)
+{
+	complx	center;
+	complx	start;
+
+	start = find_start(previous, unit);
+	center.r = start.r + x * unit;
+	center.i = start.i - y * unit;
+	return (center);
 }
 
 int	handle_mouse(int button, int x, int y, t_render *render)

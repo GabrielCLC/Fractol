@@ -30,7 +30,7 @@ libft:
 			cd libft && $(MAKE)
 
 compile:
-			$(CC) $(CFLAGS) $(SRCS) $(LIBFT) $(MINILIBX) $(MATH) -o $(NAME) 
+			$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MINILIBX) $(MATH) -o $(NAME) 
 
 clean:
 			$(RM) $(OBJS)
@@ -41,6 +41,9 @@ fclean:		clean
 			$(RM) libft/libft.a
 			cd mlx && $(MAKE) clean
 
-re:		fclean all
+re:			fclean all
 
-.PHONY:		re fclean clean compile libft all minilibx $(NAME)
+norminette:
+			norminette $(SRCS)
+
+.PHONY:		re fclean clean compile libft all minilibx $(NAME) norminette
