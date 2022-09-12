@@ -6,7 +6,7 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 16:00:57 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/09/12 10:18:20 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/09/12 11:59:18 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,11 @@ void	initialize_fractal(int argc, char **argv, t_render *render)
 	render->type = argv[1];
 	render->max_iterations = ft_atoi(argv[2]);
 	render->win_size = ft_atoi(argv[3]);
-	render->constant.r = -0.8;
-	render->constant.i = 0.156;
+	if (!ft_strncmp(render->type, "julia", 6))
+	{
+		render->constant.r = ft_atof(argv[4]);
+		render->constant.i = ft_atof(argv[5]);
+	}
 	render->unit = 3.0 / render->win_size;
 	render->printed = 0;
 	render->color = get_color_array(render->max_iterations);

@@ -6,7 +6,7 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 09:48:00 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/08/01 10:31:04 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/09/12 11:57:34 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,6 @@ char	*get_next_line(int fd);
 char	*find_line_in(int fd, char **buffer);
 char	*get_last_line_from(char **buffer);
 char	*get_line_from(char **buffer);
+double	ft_atof(const char *str);
 
 #endif
