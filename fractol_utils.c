@@ -6,7 +6,7 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 12:47:16 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/09/12 12:24:52 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/09/12 15:12:51 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,8 @@ void	print_mandelbrot(t_info *info)
 
 void	draw_fractal(t_info *info)
 {
-	info->render->start = find_start(info->render->center, info->render->unit, info->render->win_size);
+	info->render->start = find_start(info->render->center, info->render->unit,
+			info->render->win_size);
 	if (!ft_strncmp(info->render->type, "mandelbrot", 10))
 		print_mandelbrot(info);
 	else if (!ft_strncmp(info->render->type, "julia", 5))

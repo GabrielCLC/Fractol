@@ -6,7 +6,7 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 16:00:57 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/09/12 15:09:51 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/09/12 15:14:44 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	pixel_put(t_img *img, int x, int y, int color)
 
 void	initialize_image(t_info *info)
 {
-	info->img->img = mlx_new_image(info->vars->mlx, info->render->win_size, info->render->win_size);
+	info->img->img = mlx_new_image(info->vars->mlx, info->render->win_size,
+			info->render->win_size);
 	info->img->addr = mlx_get_data_addr(info->img->img,
 			&info->img->bits_per_pixel, &info->img->line_length,
 			&info->img->endian);
@@ -31,8 +32,8 @@ void	initialize_image(t_info *info)
 void	initialize_window(t_info *info)
 {
 	info->vars->mlx = mlx_init();
-	info->vars->win = mlx_new_window(info->vars->mlx, info->render->win_size, info->render->win_size,
-			"Fract\'ol");
+	info->vars->win = mlx_new_window(info->vars->mlx, info->render->win_size,
+			info->render->win_size, "Fract\'ol");
 	mlx_hook(info->vars->win, 2, 1L << 0, handle_keypress, info->vars);
 	mlx_hook(info->vars->win, 17, 0L, handle_destroy, info->vars);
 	mlx_hook(info->vars->win, 4, 1L << 2, handle_mouse, info->render);

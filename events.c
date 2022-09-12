@@ -6,7 +6,7 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:16:33 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/09/12 14:27:03 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/09/12 15:13:13 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	handle_keypress(int keycode, t_vars *vars)
 	return (0);
 }
 
-static void update_center(t_render *render, int x, int y)
+static void	update_center(t_render *render, int x, int y)
 {
 	complx	start;
 
