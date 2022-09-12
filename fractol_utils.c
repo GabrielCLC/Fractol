@@ -6,19 +6,19 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 12:47:16 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/09/09 12:51:23 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/09/12 10:21:35 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <stdio.h>
 
-complx	find_start(complx center, double unit)
+complx	find_start(complx center, double unit, int win_size)
 {
 	complx	start;
 
-	start.r = center.r - unit * GRID_SIZE / 2;
-	start.i = center.i + unit * GRID_SIZE / 2;
+	start.r = center.r - unit * win_size / 2;
+	start.i = center.i + unit * win_size / 2;
 	return (start);
 }
 
@@ -50,9 +50,9 @@ void	print_julia(complx point, t_info *info)
 	point = info->render->start;
 	i = 0;
 	j = 0;
-	while (i < GRID_SIZE)
+	while (i < info->render->win_size)
 	{
-		while (j < GRID_SIZE)
+		while (j < info->render->win_size)
 		{
 			iterations = fractal_iteration(point, info->render->constant,
 					info->render->max_iterations);
@@ -79,9 +79,9 @@ void	print_mandelbrot(t_info *info)
 	info->render->constant = info->render->start;
 	i = 0;
 	j = 0;
-	while (i < GRID_SIZE)
+	while (i < info->render->win_size)
 	{
-		while (j < GRID_SIZE)
+		while (j < info->render->win_size)
 		{
 			iterations = fractal_iteration(zero, info->render->constant,
 					info->render->max_iterations);
@@ -98,7 +98,7 @@ void	print_mandelbrot(t_info *info)
 
 void	draw_fractal(t_info *info)
 {
-	info->render->start = find_start(info->render->center, info->render->unit);
+	info->render->start = find_start(info->render->center, info->render->unit, info->render->win_size);
 	if (!ft_strncmp(info->render->type, "mandelbrot", 10))
 		print_mandelbrot(info);
 	else if (!ft_strncmp(info->render->type, "julia", 5))

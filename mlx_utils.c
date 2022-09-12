@@ -6,7 +6,7 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 16:00:57 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/09/09 12:46:34 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/09/12 10:18:20 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	pixel_put(t_img *img, int x, int y, int color)
 
 void	initialize_image(t_info *info)
 {
-	info->img->img = mlx_new_image(info->vars->mlx, GRID_SIZE, GRID_SIZE);
+	info->img->img = mlx_new_image(info->vars->mlx, info->render->win_size, info->render->win_size);
 	info->img->addr = mlx_get_data_addr(info->img->img,
 			&info->img->bits_per_pixel, &info->img->line_length,
 			&info->img->endian);
@@ -31,7 +31,7 @@ void	initialize_image(t_info *info)
 void	initialize_window(t_info *info)
 {
 	info->vars->mlx = mlx_init();
-	info->vars->win = mlx_new_window(info->vars->mlx, GRID_SIZE, GRID_SIZE,
+	info->vars->win = mlx_new_window(info->vars->mlx, info->render->win_size, info->render->win_size,
 			"Fract\'ol");
 	mlx_hook(info->vars->win, 2, 1L << 0, handle_keypress, info->vars);
 	mlx_hook(info->vars->win, 17, 0L, handle_destroy, info->vars);
@@ -40,18 +40,14 @@ void	initialize_window(t_info *info)
 
 void	initialize_fractal(int argc, char **argv, t_render *render)
 {
-	if (argc < 2)
-	{
-		ft_printf("Invalid argument");
-		exit(0);
-	}
 	render->center.r = 0;
 	render->center.i = 0;
 	render->type = argv[1];
+	render->max_iterations = ft_atoi(argv[2]);
+	render->win_size = ft_atoi(argv[3]);
 	render->constant.r = -0.8;
 	render->constant.i = 0.156;
-	render->unit = 3.0 / GRID_SIZE;
-	render->max_iterations = 500;
+	render->unit = 3.0 / render->win_size;
 	render->printed = 0;
 	render->color = get_color_array(render->max_iterations);
 }

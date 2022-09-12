@@ -6,7 +6,7 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 12:30:54 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/09/09 12:30:58 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/09/09 13:10:36 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(int argc, char *argv[])
 	t_render	render;
 	t_info		info;
 
+	check_arguments(argc, argv);
 	info.vars = &vars;
 	info.render = &render;
 	initialize_fractal(argc, argv, info.render);

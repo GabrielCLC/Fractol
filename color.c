@@ -6,7 +6,7 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 12:34:04 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/09/09 12:39:17 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/09/12 10:07:02 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,14 @@ int	*get_color_array(int limit)
 	int	*array;
 	int	i;
 
-	array = malloc(sizeof(int) * limit);
+	array = malloc(sizeof(int) * (limit + 1));
 	if (!array)
 	{
 		ft_printf("failed to allocate color array\n");
 		exit(0);
 	}
 	i = 0;
-	while (i < limit)
+	while (i <= limit)
 	{
 		array[i] = get_color(i, limit);
 		i++;
