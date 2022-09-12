@@ -8,8 +8,6 @@ MINILIBX	= -Lmlx -lmlx -framework OpenGL -framework appKit
 
 LIBFT		= -Llibft -lft
 
-MATH		= -lm
-
 CC			= cc
 
 RM 			= rm -f
@@ -30,7 +28,7 @@ libft:
 			cd libft && $(MAKE)
 
 compile:
-			$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MINILIBX) $(MATH) -o $(NAME) 
+			$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MINILIBX) -o $(NAME) 
 
 clean:
 			$(RM) $(OBJS)

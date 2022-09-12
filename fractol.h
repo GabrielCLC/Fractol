@@ -1,13 +1,8 @@
 #ifndef FRACT_OL
 # define FRACT_OL
 
-# include <math.h>
 # include "libft/libft.h"
 # include "mlx/mlx.h"
-
-//# ifndef GRID_SIZE
-//#  define GRID_SIZE 800
-//# endif
 
 typedef struct	complex_number
 {
