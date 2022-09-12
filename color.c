@@ -6,7 +6,7 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 12:34:04 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/09/12 10:07:02 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/09/12 12:14:58 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@ int	hsv_to_rgb(double h, double s, double v)
 	n = 255.0 * (v / 255.0);
 	z = (v - m) * (1.0 - modulus(((h / 60) / 2.0 - (int)(h / 60) / 2) - 1.0));
 	if (h >= 0 && h < 60)
-		rgb = (int)(z + m) << 16 | (int)m << 8 | (int)n;
+		rgb = (int)n << 16 | (int)(z + m) << 8 | (int) m;
 	else if (h >= 60 && h < 120)
-		rgb = (int)m << 16 | (int)(z + m) << 8 | (int)n;
+		rgb = (int)(z + m) << 16 | (int)n << 8 | (int)m;
 	else if (h >= 120 && h < 180)
 		rgb = (int)m << 16 | (int)n << 8 | (int)(z + m);
 	else if (h >= 180 && h < 240)
-		rgb = (int)(z + m) << 16 | (int)n << 8 | (int)m;
+		rgb = (int)m << 16 | (int)(z + m) << 8 | (int)n;
 	else if (h >= 240 && h < 300)
-		rgb = (int)n << 16 | (int)(z + m) << 8 | (int) m;
+		rgb = (int)(z + m) << 16 | (int)m << 8 | (int)n;
 	else
 		rgb = (int)n << 16 | (int)m << 8 | (int)(z + m);
 	return (rgb);
@@ -52,9 +52,9 @@ int	get_color(int iterations, int limit)
 	double	v;
 	int		color;
 
-	s = 255;
+	s = 100 + 155 * iterations / limit;
 	h = 360 * (double) iterations / limit;
-	v = 50 + 215 * iterations / limit;
+	v = 100 + 100 * iterations / limit;
 	if (iterations == limit)
 		return (0);
 	color = hsv_to_rgb(h, s, v);
