@@ -6,7 +6,7 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 12:47:16 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/09/12 10:21:35 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/09/12 12:24:52 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	print_julia(complx point, t_info *info)
 			iterations = fractal_iteration(point, info->render->constant,
 					info->render->max_iterations);
 			pixel_put(info->img, j, i, info->render->color[iterations]);
-				point.r += info->render->unit;
+			point.r += info->render->unit;
 			j++;
 		}
 		j = 0;

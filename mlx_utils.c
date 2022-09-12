@@ -6,7 +6,7 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 16:00:57 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/09/12 11:59:18 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/09/12 15:09:51 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	initialize_window(t_info *info)
 	mlx_hook(info->vars->win, 4, 1L << 2, handle_mouse, info->render);
 }
 
-void	initialize_fractal(int argc, char **argv, t_render *render)
+void	initialize_fractal(char **argv, t_render *render)
 {
 	render->center.r = 0;
 	render->center.i = 0;

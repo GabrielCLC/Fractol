@@ -6,7 +6,7 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:16:33 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/09/12 10:27:36 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/09/12 14:27:03 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ int	handle_mouse(int button, int x, int y, t_render *render)
 
 int	handle_destroy(t_vars *vars)
 {
-	ft_printf("clicked on 'x'\n");
-	(void) vars;
+	mlx_destroy_window(vars->mlx, vars->win);
 	exit(0);
 	return (0);
 }
