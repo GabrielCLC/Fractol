@@ -4,6 +4,16 @@
 # include "libft/libft.h"
 # include "mlx/mlx.h"
 
+# ifndef COLORS
+# define COLORS
+# define RED "\033[1;31m"
+# define BLUE "\033[1;34m"
+# define YLLW "\033[1;33m"
+# define GREEN "\033[1;32m"
+# define PURPL "\033[0;35m"
+# define RESET "\033[0m"
+# endif
+
 typedef struct	complex_number
 {
 	double	r;
