@@ -6,18 +6,19 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:16:33 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/09/12 15:13:13 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/09/19 15:10:38 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <stdio.h>
 
-int	handle_keypress(int keycode, t_vars *vars)
+int	handle_keypress(int keycode, t_info *info)
 {
 	if (keycode == 53)
 	{
-		mlx_destroy_window(vars->mlx, vars->win);
+		free(info->render->color);
+		mlx_destroy_window(info->vars->mlx, info->vars->win);
 		exit(0);
 	}
 	return (0);
@@ -44,9 +45,10 @@ int	handle_mouse(int button, int x, int y, t_render *render)
 	return (0);
 }
 
-int	handle_destroy(t_vars *vars)
+int	handle_destroy(t_info *info)
 {
-	mlx_destroy_window(vars->mlx, vars->win);
+	free(info->render->color);
+	mlx_destroy_window(info->vars->mlx, info->vars->win);
 	exit(0);
 	return (0);
 }

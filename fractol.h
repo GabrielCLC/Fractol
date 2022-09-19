@@ -58,8 +58,8 @@ typedef struct	s_info
 
 
 int		handle_mouse(int button, int x, int y, t_render *render);
-int		handle_destroy(t_vars *vars);
-int		handle_keypress(int keycode, t_vars *vars);
+int		handle_destroy(t_info *info);
+int		handle_keypress(int keycode, t_info *info);
 int		render_next_frame(t_info *info);
 int		hsv_to_rgb(double h, double s, double v);
 int		get_color(int iterations, int limit);
