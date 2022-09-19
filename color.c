@@ -6,7 +6,7 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 12:34:04 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/09/12 18:06:19 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/09/19 15:38:20 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,9 @@ int	get_color(int iterations, int limit)
 	double	v;
 	int		color;
 
-	s = 0.9 + (iterations / limit) * 0.1;
-	//s = 1;
+	s = 1;
 	h = 360 * (double) iterations / limit;
-	v = 0.7 + (iterations / limit) * 0.3;
+	v = 0.5 + (iterations / limit) * 0.3;
 	if (iterations == limit)
 		return (0);
 	color = hsv_to_rgb(h, s, v);
