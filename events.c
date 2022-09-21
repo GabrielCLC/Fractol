@@ -6,7 +6,7 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:16:33 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/09/19 15:10:38 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/09/21 15:18:32 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ static void	update_center(t_render *render, int x, int y)
 
 int	handle_mouse(int button, int x, int y, t_render *render)
 {
-	if (button == 4)
-		render->unit *= 1.2;
-	else if (button == 5)
-		render->unit *= 0.8;
+	if (button == 5)
+		render->unit *= 1.1;
+	else if (button == 4)
+		render->unit *= 0.9;
 	else if (button == 1)
 		update_center(render, x, y);
 	render->printed = 0;
