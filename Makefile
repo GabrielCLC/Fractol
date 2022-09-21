@@ -4,7 +4,7 @@ SRCS		= fractol.c fractol_utils.c color.c events.c mlx_utils.c validation.c
 
 OBJS		= $(SRCS:.c=.o)
 
-MINILIBX	= -Lmlx -lmlx -framework OpenGL -framework appKit
+MINILIBX	= -Lmlx -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
 LIBFT		= -Llibft -lft
 
