@@ -6,12 +6,19 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:16:33 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/09/21 15:18:32 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/10/14 20:42:09 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <stdio.h>
+
+static int	reset_render(t_render *render)
+{
+	render->center.r = 0;
+	render->center.i = 0;
+	render->unit = 3.0 / render->win_size;
+}
 
 int	handle_keypress(int keycode, t_info *info)
 {
@@ -21,6 +28,47 @@ int	handle_keypress(int keycode, t_info *info)
 		mlx_destroy_window(info->vars->mlx, info->vars->win);
 		exit(0);
 	}
+	else if (keycode == 49)
+	{
+		ft_strlcpy(info->render->type, "julia", 6);
+		info->render->constant.r = -0.54;
+		info->render->constant.i = 0.54;
+		reset_render(info->render);
+	}
+	else if (keycode == 50)
+	{
+		ft_strlcpy(info->render->type, "julia", 6);
+		info->render->constant.r = 0.34;
+		info->render->constant.i = -0.05;
+		reset_render(info->render);
+	}
+	else if (keycode == 51)
+	{
+		ft_strlcpy(info->render->type, "julia", 6);
+		info->render->constant.r = 0.37;
+		info->render->constant.i = -0.1;
+		reset_render(info->render);
+	}
+	else if (keycode == 52)
+	{
+		ft_strlcpy(info->render->type, "mandelbrot", 11);
+		reset_render(info->render);
+	}
+	else if (keycode == 61)
+	{
+		free(info->render->color);
+		if (info->render->max_iterations < 700)
+			info->render->max_iterations += 50;
+		info->render->color = get_color_array(info->render->max_iterations);
+	}
+	else if (keycode == 45)
+	{
+		free(info->render->color);
+		if (info->render->max_iterations > 100)
+			info->render->max_iterations -= 50;
+		info->render->color = get_color_array(info->render->max_iterations);
+	}
+	info->render->printed = 0;
 	return (0);
 }
 

@@ -70,7 +70,7 @@ void	check_arguments(int argc, char **argv);
 void	pixel_put(t_img *img, int x, int y, int color);
 void	initialize_image(t_info *info);
 void	initialize_window(t_info *info);
-void	initialize_fractal(char **argv, t_render *render);
+void	initialize_fractal(t_render *render);
 void	draw_fractal(t_info *info);
 void	print_mandelbrot(t_info *img);
 void	print_julia(complx point, t_info *info);

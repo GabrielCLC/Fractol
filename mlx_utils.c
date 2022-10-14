@@ -6,7 +6,7 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 16:00:57 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/09/19 15:08:05 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/10/14 20:44:30 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,21 @@ void	initialize_window(t_info *info)
 {
 	info->vars->mlx = mlx_init();
 	info->vars->win = mlx_new_window(info->vars->mlx, info->render->win_size,
-			info->render->win_size, "Fract\'ol");
+			info->render->win_size, "Fractal");
 	mlx_hook(info->vars->win, 2, 1L << 0, handle_keypress, info);
 	mlx_hook(info->vars->win, 17, 0L, handle_destroy, info);
 	mlx_hook(info->vars->win, 4, 1L << 2, handle_mouse, info->render);
 }
 
-void	initialize_fractal(char **argv, t_render *render)
+void	initialize_fractal(t_render *render)
 {
 	render->center.r = 0;
 	render->center.i = 0;
-	render->type = argv[1];
-	render->max_iterations = ft_atoi(argv[2]);
-	render->win_size = ft_atoi(argv[3]);
-	if (!ft_strncmp(render->type, "julia", 6))
-	{
-		render->constant.r = ft_atof(argv[4]);
-		render->constant.i = ft_atof(argv[5]);
-	}
+	render->max_iterations = 200;
+	render->win_size = 800;
+	render->type = ft_strdup("julia");
+	render->constant.r = -0.54;
+	render->constant.i = 0.54;
 	render->unit = 3.0 / render->win_size;
 	render->printed = 0;
 	render->color = get_color_array(render->max_iterations);
