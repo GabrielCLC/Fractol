@@ -6,18 +6,22 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:16:33 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/10/14 20:42:09 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/10/14 20:56:42 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <stdio.h>
 
-static int	reset_render(t_render *render)
+static void	reset_render(t_render *render)
 {
 	render->center.r = 0;
 	render->center.i = 0;
 	render->unit = 3.0 / render->win_size;
+	free(render->color);
+	render->max_iterations = 200;
+	render->color = get_color_array(render->max_iterations);
+
 }
 
 int	handle_keypress(int keycode, t_info *info)
