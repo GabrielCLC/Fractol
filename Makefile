@@ -20,7 +20,7 @@ CC			= cc
 
 RM 			= rm -f
 
-CFLAGS		= -Wall -Wextra -g#-Werror
+CFLAGS		= -Wall -Wextra -Ofast#-Werror
 
 .c.o:
 			$(CC) $(CFLAGS) -c $(SRCS)
