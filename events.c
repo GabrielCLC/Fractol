@@ -6,7 +6,7 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:16:33 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/10/14 20:56:42 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/10/15 14:43:30 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,50 +26,50 @@ static void	reset_render(t_render *render)
 
 int	handle_keypress(int keycode, t_info *info)
 {
-	if (keycode == 53)
+	if (keycode == ESC)
 	{
 		free(info->render->color);
 		mlx_destroy_window(info->vars->mlx, info->vars->win);
 		exit(0);
 	}
-	else if (keycode == 49)
+	else if (keycode == ONE)
 	{
 		ft_strlcpy(info->render->type, "julia", 6);
 		info->render->constant.r = -0.54;
 		info->render->constant.i = 0.54;
 		reset_render(info->render);
 	}
-	else if (keycode == 50)
+	else if (keycode == TWO)
 	{
 		ft_strlcpy(info->render->type, "julia", 6);
 		info->render->constant.r = 0.34;
 		info->render->constant.i = -0.05;
 		reset_render(info->render);
 	}
-	else if (keycode == 51)
+	else if (keycode == THREE)
 	{
 		ft_strlcpy(info->render->type, "julia", 6);
 		info->render->constant.r = 0.37;
 		info->render->constant.i = -0.1;
 		reset_render(info->render);
 	}
-	else if (keycode == 52)
+	else if (keycode == FOUR)
 	{
 		ft_strlcpy(info->render->type, "mandelbrot", 11);
 		reset_render(info->render);
 	}
-	else if (keycode == 61)
+	else if (keycode == PLUS)
 	{
 		free(info->render->color);
 		if (info->render->max_iterations < 700)
-			info->render->max_iterations += 50;
+			info->render->max_iterations += 20;
 		info->render->color = get_color_array(info->render->max_iterations);
 	}
-	else if (keycode == 45)
+	else if (keycode == MINUS)
 	{
 		free(info->render->color);
 		if (info->render->max_iterations > 100)
-			info->render->max_iterations -= 50;
+			info->render->max_iterations -= 20;
 		info->render->color = get_color_array(info->render->max_iterations);
 	}
 	info->render->printed = 0;
@@ -87,9 +87,9 @@ static void	update_center(t_render *render, int x, int y)
 
 int	handle_mouse(int button, int x, int y, t_render *render)
 {
-	if (button == 5)
+	if (button == SCRLDWN)
 		render->unit *= 1.1;
-	else if (button == 4)
+	else if (button == SCRLUP)
 		render->unit *= 0.9;
 	else if (button == 1)
 		update_center(render, x, y);

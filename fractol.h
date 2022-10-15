@@ -4,7 +4,6 @@
 # include "libft/libft.h"
 # include "mlx/mlx.h"
 
-# ifndef COLORS
 # define COLORS
 # define RED "\033[1;31m"
 # define BLUE "\033[1;34m"
@@ -12,6 +11,27 @@
 # define GREEN "\033[1;32m"
 # define PURPL "\033[1;35m"
 # define RESET "\033[0m"
+
+# ifndef Linux
+# define ESC 53
+# define ONE 18
+# define TWO 19
+# define THREE 20
+# define FOUR 21
+# define PLUS 24
+# define MINUS 27
+# define SCRLDWN 4
+# define SCRLUP 5
+# elif
+# define ESC 53
+# define ONE 49
+# define TWO 50
+# define THREE 51
+# define FOUR 52
+# define PLUS 61
+# define MINUS 45
+# define SCRLDWN 5
+# define SCRLUP 4
 # endif
 
 typedef struct	complex_number
