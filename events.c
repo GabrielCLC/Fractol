@@ -6,7 +6,7 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:16:33 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/10/15 16:16:06 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/10/15 16:56:07 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	handle_mouse(int button, int x, int y, t_render *render)
 	{
 		start = find_start(render->center, render->unit, WIN_SIZE);
 		point.r = start.r + x * render->unit;
-		point.i = start.i + y * render->unit;
+		point.i = start.i - y * render->unit;
 		render->unit *= 1.1;
 		update_center(render, x, y, point);
 	}
