@@ -6,7 +6,7 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:16:33 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/10/15 14:50:42 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/10/15 16:16:06 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,23 +76,44 @@ int	handle_keypress(int keycode, t_info *info)
 	return (0);
 }
 
-static void	update_center(t_render *render, int x, int y)
+static void	update_center(t_render *render, int x, int y, complx point)
 {
-	complx	start;
+	complx	center;
 
-	start = find_start(render->center, render->unit, WIN_SIZE);
-	render->center.r = start.r + x * render->unit;
-	render->center.i = start.i - y * render->unit;
+	if (x < WIN_SIZE / 2)
+		center.r = point.r + (WIN_SIZE / 2 - x) * render->unit;
+	else if (x > WIN_SIZE / 2)
+		center.r = point.r - (x - WIN_SIZE / 2) * render->unit;
+	if (y < WIN_SIZE / 2)
+		center.i = point.i - (WIN_SIZE / 2 - y) * render->unit;
+	else if (y > WIN_SIZE / 2)
+		center.i = point.i + (y - WIN_SIZE / 2) * render->unit;
+	else
+		center = point;
+	render->center = center;
 }
 
 int	handle_mouse(int button, int x, int y, t_render *render)
 {
+	complx	start;
+	complx	point;
+
 	if (button == SCRLDWN)
+	{
+		start = find_start(render->center, render->unit, WIN_SIZE);
+		point.r = start.r + x * render->unit;
+		point.i = start.i + y * render->unit;
 		render->unit *= 1.1;
+		update_center(render, x, y, point);
+	}
 	else if (button == SCRLUP)
+	{
+		start = find_start(render->center, render->unit, WIN_SIZE);
+		point.r = start.r + x * render->unit;
+		point.i = start.i - y * render->unit;
 		render->unit *= 0.9;
-	else if (button == 1)
-		update_center(render, x, y);
+		update_center(render, x, y, point);
+	}
 	render->printed = 0;
 	return (0);
 }
