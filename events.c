@@ -6,7 +6,7 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:16:33 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/10/15 14:43:30 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/10/15 14:50:42 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	reset_render(t_render *render)
 {
 	render->center.r = 0;
 	render->center.i = 0;
-	render->unit = 3.0 / render->win_size;
+	render->unit = 3.0 / WIN_SIZE;
 	free(render->color);
 	render->max_iterations = 200;
 	render->color = get_color_array(render->max_iterations);
@@ -80,7 +80,7 @@ static void	update_center(t_render *render, int x, int y)
 {
 	complx	start;
 
-	start = find_start(render->center, render->unit, render->win_size);
+	start = find_start(render->center, render->unit, WIN_SIZE);
 	render->center.r = start.r + x * render->unit;
 	render->center.i = start.i - y * render->unit;
 }

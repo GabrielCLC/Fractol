@@ -34,6 +34,8 @@
 # define SCRLUP 4
 # endif
 
+# define WIN_SIZE 800
+
 typedef struct	complex_number
 {
 	double	r;
@@ -66,7 +68,6 @@ typedef struct	s_render
 	int		max_iterations;
 	int		printed;
 	int		*color;
-	int		win_size;
 }				t_render;
 
 typedef struct	s_info

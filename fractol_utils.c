@@ -6,7 +6,7 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 12:47:16 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/09/12 15:12:51 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/10/15 14:49:56 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void	print_julia(complx point, t_info *info)
 	point = info->render->start;
 	i = 0;
 	j = 0;
-	while (i < info->render->win_size)
+	while (i < WIN_SIZE)
 	{
-		while (j < info->render->win_size)
+		while (j < WIN_SIZE)
 		{
 			iterations = fractal_iteration(point, info->render->constant,
 					info->render->max_iterations);
@@ -79,9 +79,9 @@ void	print_mandelbrot(t_info *info)
 	info->render->constant = info->render->start;
 	i = 0;
 	j = 0;
-	while (i < info->render->win_size)
+	while (i < WIN_SIZE)
 	{
-		while (j < info->render->win_size)
+		while (j < WIN_SIZE)
 		{
 			iterations = fractal_iteration(zero, info->render->constant,
 					info->render->max_iterations);
@@ -98,8 +98,7 @@ void	print_mandelbrot(t_info *info)
 
 void	draw_fractal(t_info *info)
 {
-	info->render->start = find_start(info->render->center, info->render->unit,
-			info->render->win_size);
+	info->render->start = find_start(info->render->center, info->render->unit, WIN_SIZE);
 	if (!ft_strncmp(info->render->type, "mandelbrot", 10))
 		print_mandelbrot(info);
 	else if (!ft_strncmp(info->render->type, "julia", 5))
