@@ -6,7 +6,7 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 16:00:57 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/10/15 14:52:35 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/10/15 15:14:16 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,21 @@ void	initialize_window(t_info *info)
 	mlx_hook(info->vars->win, 4, 1L << 2, handle_mouse, info->render);
 }
 
+static int		**get_pixel_vector()
+{
+	int	i;
+	int	**vector;
+
+	i = 0;
+	vector = ft_calloc(WIN_SIZE, sizeof(int *));
+	while (i < WIN_SIZE)
+	{
+		vector[i] = malloc(sizeof(int) * WIN_SIZE);
+		i++;
+	}
+	return (vector);
+}
+
 void	initialize_fractal(t_render *render)
 {
 	render->center.r = 0;
@@ -50,6 +65,29 @@ void	initialize_fractal(t_render *render)
 	render->unit = 3.0 / WIN_SIZE;
 	render->printed = 0;
 	render->color = get_color_array(render->max_iterations);
+	render->pixel = get_pixel_vector();
+}
+
+void	print_pixels(t_info *info)
+{
+	int	i;
+	int j;
+	char	*dst;
+
+
+	i = 0;
+	j = 0;
+	while (i < WIN_SIZE)
+	{
+		while (j < WIN_SIZE)
+		{
+			dst = info->img->addr + (i * info->img->line_length + j * (info->img->bits_per_pixel / 8));
+			*(unsigned int *)dst = info->render->pixel[i][j];
+			j++;
+		}
+		j = 0;
+		i++;
+	}
 }
 
 int	render_next_frame(t_info *info)

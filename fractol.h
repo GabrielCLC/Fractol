@@ -68,6 +68,7 @@ typedef struct	s_render
 	int		max_iterations;
 	int		printed;
 	int		*color;
+	int		**pixel;
 }				t_render;
 
 typedef struct	s_info
@@ -95,6 +96,7 @@ void	initialize_fractal(t_render *render);
 void	draw_fractal(t_info *info);
 void	print_mandelbrot(t_info *img);
 void	print_julia(complx point, t_info *info);
+void	print_pixels(t_info *info);
 double	absolute_value(complx nbr);
 complx	find_start(complx center, double unit, int win_size);
 complx	complx_pow(complx nbr, int power);
