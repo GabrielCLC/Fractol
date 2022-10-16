@@ -12,8 +12,8 @@
 # define PURPL "\033[1;35m"
 # define RESET "\033[0m"
 
-# ifndef Linux
-# define ESC 53
+# if LINUX == 42
+# define ESC 65307
 # define ONE 18
 # define TWO 19
 # define THREE 20
@@ -22,7 +22,7 @@
 # define MINUS 27
 # define SCRLDWN 4
 # define SCRLUP 5
-# elif
+# else
 # define ESC 53
 # define ONE 49
 # define TWO 50

@@ -6,7 +6,7 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:16:33 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/10/15 16:56:07 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/10/16 13:05:31 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	handle_keypress(int keycode, t_info *info)
 	else if (keycode == TWO)
 	{
 		ft_strlcpy(info->render->type, "julia", 6);
-		info->render->constant.r = 0.34;
-		info->render->constant.i = -0.05;
+		info->render->constant.r = 0.285;
+		info->render->constant.i = -0.01;
 		reset_render(info->render);
 	}
 	else if (keycode == THREE)

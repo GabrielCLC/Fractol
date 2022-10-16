@@ -9,11 +9,11 @@ OBJS		= $(SRCS:.c=.o)
 ifeq ($(UNAME), Linux)
 MINILIBX	= -Lmlx_linux -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 MLX			= mlx_linux
-OS			= LINUX
+DEFINE		= -D LINUX=42
 else
 MINILIBX	= -Lmlx_mac -lmlx -framework OpenGL -framework appKit
 MLX			= mlx_mac
-OS			= MAC
+DEFINE		= -D LINUX=42
 endif
 
 LIBFT		= -Llibft -lft
@@ -38,7 +38,7 @@ libft:
 			cd libft && $(MAKE)
 
 compile:
-			$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MINILIBX) -D $(OS)=1 -o $(NAME) 
+			$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MINILIBX) $(DEFINE) -o $(NAME) 
 
 clean:
 			$(RM) $(OBJS)
