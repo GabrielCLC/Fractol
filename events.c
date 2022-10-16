@@ -6,7 +6,7 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:16:33 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/10/16 13:05:31 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/10/16 14:02:13 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ static void	reset_render(t_render *render)
 	render->center.r = 0;
 	render->center.i = 0;
 	render->unit = 3.0 / WIN_SIZE;
-	free(render->color);
 	render->max_iterations = 200;
-	render->color = get_color_array(render->max_iterations);
-
 }
 
 int	handle_keypress(int keycode, t_info *info)
@@ -58,38 +55,37 @@ int	handle_keypress(int keycode, t_info *info)
 		ft_strlcpy(info->render->type, "mandelbrot", 11);
 		reset_render(info->render);
 	}
-	else if (keycode == PLUS)
+	else if (keycode == PLUS && info->render->unit > 0.00000000000001)
 	{
-		free(info->render->color);
 		if (info->render->max_iterations < 700)
 			info->render->max_iterations += 20;
-		info->render->color = get_color_array(info->render->max_iterations);
 	}
-	else if (keycode == MINUS)
+	else if (keycode == MINUS && info->render->unit > 0.00000000000001)
 	{
-		free(info->render->color);
 		if (info->render->max_iterations > 100)
 			info->render->max_iterations -= 20;
-		info->render->color = get_color_array(info->render->max_iterations);
 	}
 	info->render->printed = 0;
 	return (0);
 }
 
+#include <stdio.h>
+
 static void	update_center(t_render *render, int x, int y, complx point)
 {
 	complx	center;
-
-	if (x < WIN_SIZE / 2)
+	if (x < WIN_SIZE / 2 && (point.r > render->center.r || point.r < render->center.r))
 		center.r = point.r + (WIN_SIZE / 2 - x) * render->unit;
-	else if (x > WIN_SIZE / 2)
+	else if (x > WIN_SIZE / 2 && (point.r > render->center.r || point.r < render->center.r))
 		center.r = point.r - (x - WIN_SIZE / 2) * render->unit;
-	if (y < WIN_SIZE / 2)
+	else
+		center.r = point.r;
+	if (y < WIN_SIZE / 2 && (point.i > render->center.i || point.i < render->center.i))
 		center.i = point.i - (WIN_SIZE / 2 - y) * render->unit;
-	else if (y > WIN_SIZE / 2)
+	else if (y > WIN_SIZE / 2 && (point.i > render->center.i || point.i < render->center.i))
 		center.i = point.i + (y - WIN_SIZE / 2) * render->unit;
 	else
-		center = point;
+		center.i = point.i;
 	render->center = center;
 }
 
@@ -106,7 +102,7 @@ int	handle_mouse(int button, int x, int y, t_render *render)
 		render->unit *= 1.1;
 		update_center(render, x, y, point);
 	}
-	else if (button == SCRLUP)
+	else if (button == SCRLUP && render->unit > 0.00000000000001)
 	{
 		start = find_start(render->center, render->unit, WIN_SIZE);
 		point.r = start.r + x * render->unit;

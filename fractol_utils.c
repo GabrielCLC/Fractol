@@ -6,7 +6,7 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 12:47:16 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/10/15 15:31:51 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/10/16 13:28:40 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,10 @@ void	print_julia(complx point, t_info *info)
 				z = temp;
 				iterations++;
 			}
-			info->render->pixel[i][j] = info->render->color[iterations];
+			if (iterations == info->render->max_iterations)
+				info->render->pixel[i][j] = 0;
+			else
+				info->render->pixel[i][j] = info->render->color[iterations];
 //			iterations = fractal_iteration(point, info->render->constant,
 //					info->render->max_iterations);
 //			pixel_put(info->img, j, i, info->render->color[iterations]);
@@ -115,7 +118,10 @@ void	print_mandelbrot(t_info *info)
 				z = temp;
 				iterations++;
 			}
-			info->render->pixel[i][j] = info->render->color[iterations];
+			if (iterations == info->render->max_iterations)
+				info->render->pixel[i][j] = 0;
+			else
+				info->render->pixel[i][j] = info->render->color[iterations];
 //			iterations = fractal_iteration(zero, info->render->constant,
 //					info->render->max_iterations);
 //			pixel_put(info->img, j, i, info->render->color[iterations]);

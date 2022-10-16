@@ -6,7 +6,7 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 16:00:57 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/10/16 13:21:34 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/10/16 13:42:42 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	initialize_fractal(t_render *render)
 	render->constant.i = 0.54;
 	render->unit = 3.0 / WIN_SIZE;
 	render->printed = 0;
-	render->color = get_color_array(render->max_iterations);
+	render->color = get_color_array(700);
 	render->pixel = get_pixel_vector();
 }
 

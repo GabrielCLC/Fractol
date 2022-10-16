@@ -6,7 +6,7 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 12:34:04 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/10/14 20:54:27 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/10/16 13:29:09 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	get_color(int iterations, int limit)
 	int		color;
 
 	s = 1;
-	h = 240 * (double) iterations / limit;
+	h = 300 * (double) iterations / limit;
 	v = 0.7 + (iterations / limit) * 0.3;
 	if (iterations == limit)
 		return (0);
