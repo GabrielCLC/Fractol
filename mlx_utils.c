@@ -6,7 +6,7 @@
 /*   By: gcorreia <gcorreia@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 16:00:57 by gcorreia          #+#    #+#             */
-/*   Updated: 2022/10/16 13:42:42 by gcorreia         ###   ########.fr       */
+/*   Updated: 2022/10/16 15:00:23 by gcorreia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,13 @@ void	print_pixels(t_info *info)
 }
 static void	print_instructions(t_info *info)
 {
-	mlx_string_put(info->vars->mlx, info->vars->win, 0, 10, 0X00FFFFFF, "Commands:");
+	mlx_string_put(info->vars->mlx, info->vars->win, 0, 10, 0X00FFFFFF, "Keys:      Commands:");
 	mlx_string_put(info->vars->mlx, info->vars->win, 0, 30, 0X00FFFFFF, "1          Julia set");
 	mlx_string_put(info->vars->mlx, info->vars->win, 0, 50, 0X00FFFFFF, "2          Julia set");
 	mlx_string_put(info->vars->mlx, info->vars->win, 0, 70, 0X00FFFFFF, "3          Julia set");
 	mlx_string_put(info->vars->mlx, info->vars->win, 0, 90, 0X00FFFFFF, "4          Mandelbrot");
-	mlx_string_put(info->vars->mlx, info->vars->win, 0, 110, 0X00FFFFFF, "Scroll    Zoom");
-	mlx_string_put(info->vars->mlx, info->vars->win, 0, 130, 0X00FFFFFF, "+ or -    Iterations");
+	mlx_string_put(info->vars->mlx, info->vars->win, 0, 110, 0X00FFFFFF, "Scroll     Zoom");
+	mlx_string_put(info->vars->mlx, info->vars->win, 0, 130, 0X00FFFFFF, "+ or -     Iterations");
 }
 
 int	render_next_frame(t_info *info)
