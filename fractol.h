@@ -4,35 +4,35 @@
 # include "libft/libft.h"
 # include "mlx/mlx.h"
 
-# define COLORS
-# define RED "\033[1;31m"
-# define BLUE "\033[1;34m"
-# define YLLW "\033[1;33m"
-# define GREEN "\033[1;32m"
-# define PURPL "\033[1;35m"
-# define RESET "\033[0m"
-
-# if LINUX == 42
-# define ESC 65307
-# define ONE 18
-# define TWO 19
-# define THREE 20
-# define FOUR 21
-# define PLUS 24
-# define MINUS 27
-# define SCRLDWN 4
-# define SCRLUP 5
-# else
-# define ESC 53
-# define ONE 49
-# define TWO 50
-# define THREE 51
-# define FOUR 52
-# define PLUS 61
-# define MINUS 45
-# define SCRLDWN 5
-# define SCRLUP 4
-# endif
+//# define COLORS
+//# define RED "\033[1;31m"
+//# define BLUE "\033[1;34m"
+//# define YLLW "\033[1;33m"
+//# define GREEN "\033[1;32m"
+//# define PURPL "\033[1;35m"
+//# define RESET "\033[0m"
+//
+//# ifndef MAC_OS 
+//#  define ESC 65307
+//#  define ONE 18
+//#  define TWO 19
+//#  define THREE 20
+//#  define FOUR 21
+//#  define PLUS 24
+//#  define MINUS 27
+//#  define SCRLDWN 4
+//#  define SCRLUP 5
+//# else
+//#  define ESC 53
+//#  define ONE 49
+//#  define TWO 50
+//#  define THREE 51
+//#  define FOUR 52
+//#  define PLUS 61
+//#  define MINUS 45
+//#  define SCRLDWN 5
+//#  define SCRLUP 4
+//# endif
 
 # define WIN_SIZE 800
 
